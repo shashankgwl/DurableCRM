@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Durable2": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7265",
+      "launchBrowser": false
+    }
+  }
+}
