@@ -24,7 +24,7 @@ namespace Durable2
         private static string responseContent;
         static CrmServiceClient serviceClient = null;
         static CosmosClient cosmosClient = new CosmosClient("AccountEndpoint=https://ea-cosmos-dev.documents.azure.com:443/;AccountKey=<your account key>");
-        private static string clientId = "e6130d5d-a165-44a9-8964-6f11ed59549f";
+        private static string clientId = "<CLIENT-id>";
         private static string clientSecret = "<your client secret>";
         private static string authority = "https://login.microsoftonline.com/efe64105-431e-4df2-abda-608a635e081f";
         private static string dataverseUrl = "https://org798d1247.crm.dynamics.com";
