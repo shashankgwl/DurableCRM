@@ -50,13 +50,6 @@ namespace Durable2
             logger.LogInformation($"value of bc is {batchCount}");
             List<Task<CosmosResponse>> cosmosTasks = new List<Task<CosmosResponse>>();
 
-            ServicePointManager.DefaultConnectionLimit = 65000;
-            ServicePointManager.Expect100Continue = false;
-            ServicePointManager.UseNagleAlgorithm = false;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-            serviceClient = new CrmServiceClient(new Uri("https://org798d1247.crm.dynamics.com/"), "e6130d5d-a165-44a9-8964-6f11ed59549f", "", true, ".\\");
-
             finalResponse.OrchastrationId = Guid.Parse(context.InstanceId);
 
             if (recCount <= batchCount)
