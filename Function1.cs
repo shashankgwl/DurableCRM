@@ -6,7 +6,6 @@ using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Tooling.Connector;
 using Newtonsoft.Json;
 using System;
@@ -56,7 +55,7 @@ namespace Durable2
             ServicePointManager.UseNagleAlgorithm = false;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            serviceClient = new CrmServiceClient(new Uri("https://org798d1247.crm.dynamics.com/"), "e6130d5d-a165-44a9-8964-6f11ed59549f", "InP8Q~d9LTP1ZSQIwafRY6Lf7tAppZYEQm2cVaX_", true, ".\\");
+            serviceClient = new CrmServiceClient(new Uri("https://org798d1247.crm.dynamics.com/"), "e6130d5d-a165-44a9-8964-6f11ed59549f", "", true, ".\\");
 
             finalResponse.OrchastrationId = Guid.Parse(context.InstanceId);
 
