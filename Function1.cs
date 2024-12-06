@@ -1,24 +1,23 @@
-using Microsoft.Azure.Cosmos;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.DurableTask;
-using Microsoft.DurableTask.Client;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Client;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Tooling.Connector;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Durable2
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.Azure.Cosmos;
+    using Microsoft.Azure.Functions.Worker;
+    using Microsoft.Azure.Functions.Worker.Http;
+    using Microsoft.DurableTask;
+    using Microsoft.DurableTask.Client;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Identity.Client;
+    using Microsoft.Xrm.Sdk;
+    using Microsoft.Xrm.Tooling.Connector;
+    using Newtonsoft.Json;
+    
     public static class Function1
     {
         private static string responseContent;
@@ -75,7 +74,6 @@ namespace Durable2
             try
             {
                 await Task.WhenAll(cosmosTasks);
-                //await context.CallActivityAsync(nameof(WaitActivity), cosmosTasks);
             }
             catch (AggregateException ax)
             {
@@ -98,10 +96,6 @@ namespace Durable2
                     logger.LogInformation("skipping CRM insert because of 0 records");
             });
 
-            //if (!context.IsReplaying)
-            //  logger.LogInformation($"Sending {crmTasks.Sum(t => t.Result.Count)} total cosmos results for CRM insert");
-            //successCounter = failCounter = 0;
-            //await context.CallActivityAsync(nameof(WaitActivity));
             await Task.WhenAll(crmTasks);
 
             foreach (var crmTask in crmTasks)
@@ -163,7 +157,6 @@ namespace Durable2
         public async static Task<List<CrmResponse>> InsertCRM([ActivityTrigger] List<SalesRecord> salesRecords, FunctionContext ctx)
         {
             List<CrmResponse> crmResponses = new List<CrmResponse>();
-            EntityCollection collection = new EntityCollection();
             List<Entity> entities = new List<Entity>();
             //var salesRecords = packet.Item1;
             var entityCollection = new Root()
