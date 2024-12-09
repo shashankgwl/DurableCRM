@@ -46,12 +46,9 @@ namespace DurableCRM
                 await Task.WhenAll(cosmosTasks);
 
                 finalResponse.CosmosReadSuccessCount = cosmosTasks.Count(task => !task.Result.IsFaulted) * int.Parse(rcbc.Item2);
-                //finalResponse.CosmosReadFailureCount = cosmosTasks.Count(task => task.Result.IsFaulted) * int.Parse(rcbc.Item2);
 
                 List<Task<List<CrmResponse>>> crmTasks = new List<Task<List<CrmResponse>>>();
                 var failedQueries = cosmosTasks.Where(task => task.Result.IsFaulted).Select(task => task.Result.Query).ToList();
-                //var lastTs = cosmosTasks.Where(task => task.Result.IsFaulted).Select(item => item.Result.RetryAfter).Last();
-                //var ts = lastTs == null ? TimeSpan.FromMinutes(5) : lastTs;
                 if (failedQueries.Any())
                 {
                     await LogInformation(context, logger, $"now trying failed tasks after 10 mins, total failed tasks {failedQueries.Count()}");
