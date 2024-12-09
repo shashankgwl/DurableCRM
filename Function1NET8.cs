@@ -14,9 +14,9 @@ namespace DurableCRM
 
     public static class DurableCRMFunction
     {
-        static CosmosClient cosmosClient = new CosmosClient("AccountEndpoint=https://ea-cosmos-dev.documents.azure.com:443/;AccountKey=<YOUR KEY>;");
-        private static string clientId = "<CLIENT ID>";
-        private static string clientSecret = "<CLIENT SECRET>";
+        static CosmosClient cosmosClient = new CosmosClient(Helper.GetCosmoString);
+        private static string clientId = Helper.GetClientId;
+        private static string clientSecret = Helper.GetClientSecret;
         private static string authority = "https://login.microsoftonline.com/efe64105-431e-4df2-abda-608a635e081f";
         private static string dataverseUrl = "https://org798d1247.crm.dynamics.com";
 
